@@ -67,7 +67,7 @@ def Insert_tree(root,node):
 
 #二叉搜索树查找操作
 def Search_tree(root,key):
-	if root is None or root.data is None:
+	if root is None or root.data is None or key is None:
 		#之所以要求root.data != None是因为一个数据域和指针域全为None的结点，不为None
 		return None
 	cur = root
