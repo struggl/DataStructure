@@ -71,7 +71,7 @@ def Search_tree(root,key):
 		#之所以要求root.data != None是因为一个数据域和指针域全为None的结点，不为None
 		return None
 	cur = root
-	while cur != None:
+	while cur != None and cur.data != None:
 		if key == cur.data:
 			return cur
 		if key < cur.data:
@@ -113,10 +113,12 @@ def Successor_tree(root,node):
 	while p != None and cur is p.right:
 		cur = p
 		p = cur.p
+	#此时p若为None，说明给定的node已经是树中最大的元素了,因此其后继也应当为None
 	return p	
 
 #二叉树求前驱
 def Predecessor_tree(root,node):
+	#与求后继是对称的，所有的right改为left，Minimum改为Maximum即可
 	if root is None or root.data is None:
 		return None
 	if node is None or node.data is None:
@@ -148,6 +150,9 @@ def Delete_node(root,node):
 	#注意，后继结点没有左孩子(否则node的后继就应该是这个左孩子，因为这个左孩子必然比node大且比这个伪后继结点小)
 	successor = Successor_tree(root,node)
 	if successor is not node.right:	
+		#若successor(如前所述,successor没有左孩子)不是node的右孩子，则把successor替换到node.right的位置
+		#这个过程第一步是把successor.right与successor.p构建双向链接
+		#第二步是把node.right与successor构建双向链接
 		root = Transplant_node(root,successor,successor.right)	
 		#successor虽有左右指针域，但这里构建node右孩子与successor的双向链接时，显然是用successor.right指针域
 		successor.right = node.right
@@ -160,6 +165,7 @@ def Delete_node(root,node):
 
 def Transplant_node(root,u,v):
 	#u和v都是同一棵二叉树上的结点，(v可为None)用v替代二叉树中u的位置，本质上是构建u.p与v的双向链接
+	#u有三种情况需要分析，1. u.p为None;2. u为左孩子；3. u为右孩子
 	if root is None or root.data is None:
 		return None
 	if u is None or u.data is None:
@@ -171,6 +177,7 @@ def Transplant_node(root,u,v):
 		u.p.left = v
 	else:
 		u.p.right = v
+	#前面为构建u.p对v的链接，若v为None，则已经结束，否则把v.p指向u.p
 	if v != None:
 		v.p = u.p	
 	return root	
@@ -191,6 +198,7 @@ if __name__ == '__main__':
 	root = Insert_tree(root,BSTNode(4))	
 	root = Insert_tree(root,BSTNode(5))	
 	root = Insert_tree(root,BSTNode(0))	
+	print("中序遍历：")
 	inorder(root)
 	print('height:')
 	print(get_height(root))

@@ -170,7 +170,7 @@ def postorder(root):
 #层序遍历以及用层序遍历给树结点进行编号(编号性质前提是完全二叉树)
 
 
-#中序构建二叉树
+#中序构建二叉树,所得的树实际上是一棵二叉搜索树
 def inorder_create_tree(arr):
 	if type(arr) != list or len(arr) == 0:
 		return False
