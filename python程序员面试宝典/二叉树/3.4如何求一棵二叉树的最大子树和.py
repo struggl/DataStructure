@@ -82,7 +82,7 @@ class Test(object):
 def inorder(root):
 	if root is None:
 		return False
-	if root.left is None:
+	if root.left is None and root.right is None:
 		print(root.data)		
 	else:
 		#以下两个if的相反情况实际上是递归终止条件
@@ -97,12 +97,9 @@ def inorder(root):
 def inorder2(root):
 	if root is None:
 		return False
-	if root.left is None:
+	if root.left is None and root.right is None:
 		print(root.id)		
 	else:
-		#检测二叉树是否非法
-		if root.left is None and root.right:
-			return False
 		#以下两个if的相反情况实际上是递归终止条件
 		if root.left:
 			inorder2(root.left)

@@ -53,23 +53,23 @@ def isEqual(root1,root2):
 		print('False')
 		print('4/')
 		return False
-	else:
-		bool_left = isEqual(root1.left,root2.left)
-		bool_right = isEqual(root1.right,root2.right)
-		if bool_left and bool_right:
-			print('-----')
-			print('True')
-			print('-----')
-			return True
-		print('=')
-		print('False')
-		print('=')
-		return False
+	bool_left = isEqual(root1.left,root2.left)
+	bool_right = isEqual(root1.right,root2.right)
+	if bool_left and bool_right:
+		print('-----')
+		print('True')
+		print('-----')
+		return True
+	print('=')
+	print('False')
+	print('=')
+	return False
 
 if __name__ == '__main__':	
 	root1 = inorder_create_tree([1,2,3,4,5])
 	root2 = inorder_create_tree([1,2,3,4,6])
 	#print(isEqual(root1,root2))
+	print('判断结果为：')
 	isEqual(root1,root2)
 
 

@@ -25,21 +25,18 @@ def _inorder_create_tree(arr,start,end):
 
 def print_BList(Head,End):
 	#没有头尾辅助结点，全都是有效结点
-	if Head is None:
-		pass
-	else:
-		cur = Head
-		while cur != None:
-			print(cur.data)
-			cur = cur.right
-	print('---')	
-	if End is None:
-		pass
-	else:
-		cur = End
-		while cur != None:
-			print(cur.data)
-			cur = cur.left
+	if Head is None or End is None:
+		return
+	print('-从左到右遍历-')	
+	cur = Head
+	while cur != None:
+		print(cur.data)
+		cur = cur.right
+	print('-从右到左遍历-')	
+	cur = End
+	while cur != None:
+		print(cur.data)
+		cur = cur.left
 
 def Tree2BList(root):
 	#参数边界检测
@@ -55,9 +52,11 @@ def Tree2BList(root):
 			 
 def _Tree2BList(root,Head,End):
 	#这一行if root.left 和下面的if root.right的相反情况实际上作为递归终止条件
+	#中序遍历先处理左孩子
 	if root.left:
 		Head,End = _Tree2BList(root.left,Head,End)
-
+	
+	#接着处理当前结点
 	if Head is None:
 		#当双向链表为空时，End为尾结点，数据域为None
 		Head = root
@@ -67,6 +66,7 @@ def _Tree2BList(root,Head,End):
 		root.left = End
 		End = root
 
+	#最后处理右孩子
 	if root.right:
 		Head,End = _Tree2BList(root.right,Head,End)
 	return Head,End
