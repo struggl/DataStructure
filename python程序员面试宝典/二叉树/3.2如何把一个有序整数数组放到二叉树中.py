@@ -44,8 +44,28 @@ def inorder(root):
 		if root.right:
 			inorder(root.right)
 
+#获取二叉树结点个数
+def get_nums(root):
+	#递归终止返回
+	if root is None:
+		return 0
+	return get_nums(root.left) + get_nums(root.right) + 1
+
+#获取二叉树层数(根结点所在层定义为第一层)
+def get_height(root):
+	#参数边界检测与递归终止返回
+	if root is None:
+		return 0
+	left_layer = get_height(root.left)
+	right_layer = get_height(root.right)
+	return max(left_layer,right_layer) + 1
+
 if __name__ == '__main__':
-	values = [2,3,4,5,6,7,8,9,10]
+	values = [1,2,3,4,5,6,7,8,9,10]
 	#values = [1,2]
 	root = inorder_create_BTree(values)
 	inorder(root)
+	print('树的结点个数为：')
+	print(get_nums(root))
+	print('树的层数为：')
+	print(get_height(root))

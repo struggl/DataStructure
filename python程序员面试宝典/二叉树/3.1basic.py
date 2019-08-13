@@ -198,12 +198,9 @@ def get_height(root):
 	#参数边界检测与递归终止返回
 	if root is None:
 		return 0
-	n_layer = 1
-	left_layer = 0
-	right_layer = 0
 	left_layer = get_height(root.left)
 	right_layer = get_height(root.right)
-	return n_layer + max(left_layer,right_layer)
+	return max(left_layer,right_layer) + 1
 '''
 #得到完全二叉树层数(根结点所在层定义为第一层)
 def get_height(root):
@@ -226,7 +223,8 @@ if __name__ == '__main__':
 	print('=====')
 	print(get_height(root))
 	print('=====')
-	layerorder(root)	
+	layerorder(root)
+		
 
 
 
