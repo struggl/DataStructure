@@ -168,38 +168,7 @@ def postorder(root):
 		print(root.data)
 
 #层序遍历以及用层序遍历给树结点进行编号(编号性质前提是完全二叉树)
-def printAtLevel(root,level):
-	if root is None or level < 0:
-		return 0
-	if level == 0:
-		print(root.data)
-		return 1
-	else:
-		return printAtLevel(root.left,level-1) + printAtLevel(root.right,level-1)
 
-def layerorder(root):
-	level = get_height(root)
-	printAtLevel(root,level)
-'''
-def layerorder(root):
-	if root is None or root.data is None:
-		return False
-	print(root.data)
-	_layerorder(root)
-
-def _layerorder(root):
-	#递归终止条件：叶子结点
-	#原判断语句为if root.left is None and root.right is None:
-	#实际上由于二叉树先有左结点后有右结点的特性(你大爷谁告诉你有这个性质的，把二叉搜索树放哪儿了！)，只需要root.left为None即可
-	if root is None or root.left is None:
-		return 
-	if root.left:
-		print(root.left.data)
-	if root.right:
-		print(root.right.data)
-	_layerorder(root.left)
-	_layerorder(root.right)
-'''
 
 #中序构建二叉树
 def inorder_create_tree(arr):
