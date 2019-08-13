@@ -172,7 +172,7 @@ def postorder(root):
 
 #中序构建二叉树
 def inorder_create_tree(arr):
-	if arr is None or type(arr) != list or len(arr) == 0:
+	if type(arr) != list or len(arr) == 0:
 		return False
 	return _inorder_create_tree(arr,0,len(arr)-1)
 
