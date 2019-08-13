@@ -161,9 +161,6 @@ def postorder(root):
 	if root.left is None and root.right is None:
 		print(root.data)
 	else:	
-		#检测二叉树是否合法
-		if root.left is None and root.right:
-			return False
 		if root.left:
 			postorder(root.left)
 		if root.right:
