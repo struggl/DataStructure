@@ -1,15 +1,11 @@
 '''
-栈的实现，支持5个接口
-push
-pop
-top
-len
-is_empty
+题目描述：不使用其他数据结构而翻转栈的元素
+(如果使用其他结构那就直观到没有探讨的意义了)
 
-思路一：数组实现
-思路二：链表实现
+注意概念：若一个栈依次push 1,2,3,4,5,则栈底为1，栈r为5,即最先进去的为栈底，最后进去的为栈顶(算法导论p129)
+
+方法思路：递归
 '''
-#思路一实现
 class Empty(Exception):
 	pass
 
@@ -36,15 +32,15 @@ class ArrayStack:
 	def __len__(self):
 		return len(self.__data)
 
-if __name__ == '__main__':
-	stack = ArrayStack()
-	stack.push(1)
-	stack.push(2)
-	stack.push(3)
+def print_stack(stack):
 	while True:
-		print('length of this stack is {}'.format(len(stack)))
 		try:
 			print(stack.pop())
-		except Empty:
-			print('End!')	
-			break
+		except Empty:	
+			print('End')
+			break			
+
+#实现栈元素的逆序
+
+
+

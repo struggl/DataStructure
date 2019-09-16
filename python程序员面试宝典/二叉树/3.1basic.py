@@ -141,6 +141,17 @@ def preorder(root):
 		if root.right:
 			preorder(root.right)
 
+def preorder2(root):
+	if root is not None:
+		yield root.data
+	if root.left:
+		for i in preorder2(root.left):
+			yield i
+	if root.right:
+		for i in preorder2(root.right):
+			yield i
+		
+
 #中序遍历
 def inorder(root):
 	if root is None:
@@ -201,13 +212,13 @@ def get_height(root):
 	left_layer = get_height(root.left)
 	right_layer = get_height(root.right)
 	return max(left_layer,right_layer) + 1
-'''
+"""
 #得到完全二叉树层数(根结点所在层定义为第一层)
 def get_height(root):
 	num = get_nums(root)
 	import math
 	return math.floor(math.log(num,2)) + 1
-'''	
+"""	
 if __name__ == '__main__':
 	root = create_tree()
 	#root = BTNode(1)
@@ -215,6 +226,9 @@ if __name__ == '__main__':
 	#root.right = BTNode(3)
 	preorder(root)	
 	print('=====')
+	for i in preorder2(root):
+		print(i)
+	'''
 	inorder(root)	
 	print('=====')
 	postorder(root)
@@ -224,32 +238,4 @@ if __name__ == '__main__':
 	print(get_height(root))
 	print('=====')
 	layerorder(root)
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	'''
